@@ -42,7 +42,6 @@ fun TemperatureConverterUI() {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Fahrenheit Input
         Text(
             text = "Enter Fahrenheit Temp Below",
             fontSize = 16.sp,
@@ -62,7 +61,6 @@ fun TemperatureConverterUI() {
                 .padding(bottom = 16.dp)
         )
 
-        // Celsius Input
         Text(
             text = "Enter Celsius Temp Below",
             fontSize = 16.sp,
@@ -82,7 +80,6 @@ fun TemperatureConverterUI() {
                 .padding(bottom = 16.dp)
         )
 
-        // Button for manual conversion (optional)
         Button(
             onClick = {
                 if (fahrenheitInput.isBlank() && celsiusInput.isBlank()) {
@@ -94,7 +91,6 @@ fun TemperatureConverterUI() {
             Text(text = "Convert Temp")
         }
 
-        // Display Error (if any)
         if (errorText.isNotEmpty()) {
             Text(
                 text = errorText,
