@@ -22,15 +22,15 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             if (state == "hungry") {
-                desc.text = "I'm so full"
+                desc.text = getString(R.string.im_so_full)
                 image.setImageResource(R.drawable.full)
-                btn.text = "Done"
+                btn.text = getString(R.string.done)
                 state = "full"
             }
             else {
-                desc.text = "I'm so hungry"
+                desc.text = getString(R.string.im_so_hungry)
                 image.setImageResource(R.drawable.hungry)
-                btn.text = "Eat Cookie"
+                btn.text = getString(R.string.eat_cookie)
                 state = "hungry"
             }
         }
