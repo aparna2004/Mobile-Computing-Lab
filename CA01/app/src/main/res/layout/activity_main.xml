@@ -168,9 +168,9 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-        android:text="@string/male"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp"/>
+            android:text="@string/male"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
 
         <RadioButton
             android:id="@+id/radioButton2"
