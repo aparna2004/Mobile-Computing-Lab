@@ -11,10 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Find views
         val signUpButton = findViewById<Button>(R.id.signUpButton)
 
-        // Navigate to Section1Activity on button click
         signUpButton.setOnClickListener {
             startActivity(Intent(this, Section1Activity::class.java))
         }

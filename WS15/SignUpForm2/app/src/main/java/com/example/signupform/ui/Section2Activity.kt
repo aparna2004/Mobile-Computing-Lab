@@ -66,6 +66,11 @@ class Section2Activity : AppCompatActivity() {
             val result = db.addUser(firstName, email, dateOfBirth)
             if (result != -1L) {
                 Toast.makeText(this, "Data saved to database!", Toast.LENGTH_SHORT).show()
+                with(sharedPrefs.edit()) {
+                    clear()
+                    putString("userId", result.toString())
+                    apply()
+                }
                 // Navigate to Section 3
                 startActivity(Intent(this, Section3Activity::class.java))
             } else {

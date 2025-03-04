@@ -19,6 +19,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         val createTable = """
             CREATE TABLE $TABLE_USERS (
                 $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,10 +48,11 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
         return id // Returns the row ID, -1 if failed
     }
 
-    fun getLatestUser(): User? {
+    fun getUserById(userId: String): User? {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_USERS ORDER BY $COL_ID DESC LIMIT 1", null)
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_USERS WHERE $COL_ID = ?", arrayOf(userId))
         var user: User? = null
+
         if (cursor.moveToFirst()) {
             user = User(
                 id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)),
@@ -59,6 +61,7 @@ class Database(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
                 dateOfBirth = cursor.getString(cursor.getColumnIndexOrThrow(COL_DOB))
             )
         }
+
         cursor.close()
         db.close()
         return user

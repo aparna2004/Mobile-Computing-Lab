@@ -1,5 +1,6 @@
 package com.example.signupform.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +21,11 @@ class Section3Activity : AppCompatActivity() {
         val userEmailText = findViewById<TextView>(R.id.user_email)
         val userDobText = findViewById<TextView>(R.id.user_dob)
 
-        // Fetch and display the latest user data
-        val user = db.getLatestUser()
+        // Fetch and display the user data by ID
+        val sharedPrefs = getSharedPreferences("SignupData", Context.MODE_PRIVATE)
+        val userId = sharedPrefs.getString("userId", "")
+        val user = if (userId != null) db.getUserById(userId) else null
+
         if (user != null) {
             userNameText.text = "Name: ${user.firstName}"
             userEmailText.text = "Email: ${user.email}"
