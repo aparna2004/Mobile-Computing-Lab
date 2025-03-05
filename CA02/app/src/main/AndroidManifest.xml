@@ -38,6 +38,14 @@
             android:name=".Section4Activity"
             android:exported="false" />
 
+        <activity
+            android:name=".ControlPanelActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".InputsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

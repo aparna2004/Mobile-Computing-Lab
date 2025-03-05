@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private var isLoading = false
     private lateinit var startBtn: Button
+    private lateinit var ctrlPanelBtn: Button
     private lateinit var loader: ProgressBar
     private val handler = Handler(Looper.getMainLooper())
 
@@ -22,7 +23,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         startBtn = findViewById(R.id.startBtn)
+        ctrlPanelBtn = findViewById(R.id.ctrlPanelBtn)
         loader = findViewById(R.id.loader)
+
+        ctrlPanelBtn.setOnClickListener {
+            startActivity(Intent(this, ControlPanelActivity::class.java))
+        }
 
         startBtn.setOnClickListener {
             if (!isLoading) {

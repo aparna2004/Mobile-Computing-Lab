@@ -23,6 +23,12 @@ class Section4Activity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar4)
         val submissionText = findViewById<TextView>(R.id.submittedTextView)
         val deleteButton = findViewById<Button>(R.id.deleteBtn)
+        val backBtn = findViewById<Button>(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         userIdTextView.text = "User Id: $userId"
         progressBar.progress = 100
@@ -44,7 +50,7 @@ class Section4Activity : AppCompatActivity() {
                     if (success) {
                         prefs.edit().remove("userId").apply()
                         Toast.makeText(this, "User deleted successfully!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, InputsActivity::class.java))
                         finish()
                     } else {
                         Toast.makeText(this, "Failed to delete user!", Toast.LENGTH_SHORT).show()

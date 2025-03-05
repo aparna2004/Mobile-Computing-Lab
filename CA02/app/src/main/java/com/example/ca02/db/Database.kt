@@ -63,6 +63,22 @@ class Database(context: Context) : SQLiteOpenHelper(context, "CA02DB", null, 1) 
         return rowsDeleted > 0
     }
 
+    fun getAllUsers(): List<User> {
+        val userList = mutableListOf<User>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM users", null)
+
+        while (cursor.moveToNext()) {
+            val id = cursor.getLong(cursor.getColumnIndexOrThrow("id"))
+            val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+            val email = cursor.getString(cursor.getColumnIndexOrThrow("email"))
+            val dob = cursor.getString(cursor.getColumnIndexOrThrow("dob"))
+            userList.add(User(id, name, email, dob))
+        }
+        cursor.close()
+        return userList
+    }
+
 }
 
 
