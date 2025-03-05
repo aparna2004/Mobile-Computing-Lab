@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     isLoading = false
                     startBtn.text = "Start"
                     loader.visibility = ProgressBar.INVISIBLE
-                }, 5000)
+                }, 2000)
             }
         }
     }

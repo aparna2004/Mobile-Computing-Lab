@@ -8,7 +8,10 @@ import android.content.ContentValues
 class Database(context: Context) : SQLiteOpenHelper(context, "CA02DB", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, dob TEXT)")
+        db.execSQL("" +
+                "CREATE TABLE Users (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, email TEXT, dob TEXT)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -23,21 +26,20 @@ class Database(context: Context) : SQLiteOpenHelper(context, "CA02DB", null, 1) 
                 put("email", email)
                 put("dob", dob)
             }
-            it.insert("Users", null, values) // Returns row ID
+            it.insert("Users", null, values)
         }
     }
 
     fun getUserById(userId: Long) = readableDatabase.use {
-        it.rawQuery(
-            "SELECT * FROM Users WHERE id = ?",
-            arrayOf(userId.toString()
-            )).use { cursor ->
+        it.rawQuery("SELECT * FROM Users WHERE id = ?", arrayOf(userId.toString()))
+            .use { cursor ->
             if (cursor.moveToFirst()) User(
                 cursor.getLong(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3)
-            ) else null
+            )
+            else null
         }
     }
 
@@ -78,7 +80,6 @@ class Database(context: Context) : SQLiteOpenHelper(context, "CA02DB", null, 1) 
         cursor.close()
         return userList
     }
-
 }
 
 
