@@ -14,20 +14,27 @@ class Section2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_section2)
 
+        // Retrieve the stored user ID from SharedPreferences
         val prefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val userId = prefs.getLong("userId", -1)
 
+        // Fetch user details from the database using userId
         val user = Database(this).getUserById(userId)
 
+        // UI Elements
         val greetingTextView = findViewById<TextView>(R.id.greetingTextView)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar2)
         val nextBtn = findViewById<Button>(R.id.nextBtn2)
 
-        greetingTextView.text = user?.let { "Welcome, ${it.name}!\nEmail: ${it.email}\nDOB: ${it.dob}" }
-            ?: "User not found"
+        // Display user information if found, else show "User not found"
+        greetingTextView.text = user?.let {
+            "Welcome, ${it.name}!\nEmail: ${it.email}\nDOB: ${it.dob}"
+        } ?: "User not found"
 
+        // Set progress bar to 50% (assuming 4 steps in the process)
         progressBar.progress = 50
 
+        // Move to the next section when the button is clicked
         nextBtn.setOnClickListener {
             startActivity(Intent(this, Section3Activity::class.java))
         }
